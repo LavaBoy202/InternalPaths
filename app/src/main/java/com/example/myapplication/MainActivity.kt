@@ -1,6 +1,7 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.example.myapplication
+import com.example.myapplication.Buildings
 
 import android.os.Bundle
 import android.widget.Toast
@@ -70,7 +71,8 @@ fun GreetingPreview() {
 @Composable
 fun DropDownMenu() {
     val context = LocalContext.current
-    val buildings = arrayOf("Davis Center", "Quantum Nano Center", "Science Teaching Complex", "Engineering 7", "Physical Activity Center")
+    val buildings = arrayOf("Davis Center", "Quantum Nano Center", "Science Teaching Complex", "Engineering 7", "Physical Activity Center", "Arts Lecture Hall (AL)", "B.C. Matthews Hall (BMH)", "Biology 1 (B1)", "Biology 2 (B2)", "Earth Sciences & Chemistry (ESC)")
+    buildings.sort()
     var expanded by remember { mutableStateOf(false) }
     var selectedText by remember { mutableStateOf(buildings[0]) }
 
