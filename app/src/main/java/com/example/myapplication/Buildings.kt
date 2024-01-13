@@ -1,13 +1,10 @@
 package com.example.myapplication
 
 class Buildings(val name: String) {
-    private var buildingName = name;
-    fun getName(): String {
-        return buildingName;
-    }
+    var buildingName = name;
 }
 
-fun initBuildings() {
+fun initBuildings(): Map<String, Buildings>  {
     val buildings = arrayOf(
         "Davis Center",
         "Quantum Nano Center",
@@ -25,4 +22,5 @@ fun initBuildings() {
         val instance = Buildings(key)
         listOfBuildings[key] = instance
     }
+    return listOfBuildings
 }

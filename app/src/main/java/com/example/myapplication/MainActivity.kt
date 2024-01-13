@@ -40,8 +40,8 @@ class MainActivity : ComponentActivity() {
 
                         // Greeting Text
                         Greeting("Lavan")
-                        DropDownMenu()
-                        DropDownMenu()
+                        DropDownMenu(buildings = initBuildings())
+                        DropDownMenu(buildings = initBuildings())
 
                     }
                 }
@@ -69,12 +69,10 @@ fun GreetingPreview() {
 }
 
 @Composable
-fun DropDownMenu() {
+fun DropDownMenu(buildings: Map<String, Buildings>) {
     val context = LocalContext.current
-    val buildings = arrayOf("Davis Center", "Quantum Nano Center", "Science Teaching Complex", "Engineering 7", "Physical Activity Center", "Arts Lecture Hall (AL)", "B.C. Matthews Hall (BMH)", "Biology 1 (B1)", "Biology 2 (B2)", "Earth Sciences & Chemistry (ESC)")
-    buildings.sort()
     var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(buildings[0]) }
+    var selectedText by remember { mutableStateOf(buildings["Davis Center"]?.buildingName ?:" ")}
 
     Box(
         modifier = Modifier
@@ -101,11 +99,11 @@ fun DropDownMenu() {
             ) {
                 buildings.forEach { item ->
                     DropdownMenuItem(
-                        text = { Text(text = item) },
+                        text = { Text(text = item.key) },
                         onClick = {
-                            selectedText = item
+                            selectedText = item.key
                             expanded = false
-                            Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, item.key, Toast.LENGTH_SHORT).show()
                         }
                     )
                 }
