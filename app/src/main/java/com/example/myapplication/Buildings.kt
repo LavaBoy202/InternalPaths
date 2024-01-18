@@ -4,7 +4,7 @@ import android.os.Build
 
 class Buildings(val name: String) {
     var neighbourBuildings:MutableList<Buildings> = mutableListOf()
-    fun addNeighbouringBuildings(neighbour:Buildings){
+    fun addNeighbouringBuildings(neighbour: Buildings){
         neighbourBuildings.add(neighbour)
     }
 }
@@ -26,6 +26,7 @@ fun initBuildings(): Map<String, Buildings>  {
     buildings.forEach { key ->
         val instance = Buildings(key)
         listOfBuildings[key] = instance
+        listOfBuildings[key]?.addNeighbouringBuildings(Buildings(key))
     }
     return listOfBuildings
 }
