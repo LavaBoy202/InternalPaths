@@ -72,7 +72,7 @@ fun GreetingPreview() {
 fun DropDownMenu(buildings: Map<String, Buildings>) {
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(buildings["Davis Center"]?.buildingName ?:" ")}
+    var selectedText by remember { mutableStateOf(buildings["Davis Center"]?.name ?:" ")}
 
     Box(
         modifier = Modifier

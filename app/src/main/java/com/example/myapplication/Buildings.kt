@@ -1,7 +1,12 @@
 package com.example.myapplication
 
+import android.os.Build
+
 class Buildings(val name: String) {
-    var buildingName = name;
+    var neighbourBuildings:MutableList<Buildings> = mutableListOf()
+    fun addNeighbouringBuildings(neighbour:Buildings){
+        neighbourBuildings.add(neighbour)
+    }
 }
 
 fun initBuildings(): Map<String, Buildings>  {
