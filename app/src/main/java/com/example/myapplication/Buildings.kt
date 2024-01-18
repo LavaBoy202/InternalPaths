@@ -20,7 +20,10 @@ fun initBuildings(): Map<String, Buildings>  {
         "B.C. Matthews Hall (BMH)",
         "Biology 1 (B1)",
         "Biology 2 (B2)",
-        "Earth Sciences & Chemistry (ESC)"
+        "Earth Sciences & Chemistry (ESC)",
+        "Mathematics and Computing (MC)",
+        "SLC",
+        "DP",
     )
     val listOfBuildings = mutableMapOf<String, Buildings>()
     buildings.forEach { key ->
