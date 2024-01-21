@@ -8,7 +8,16 @@ class Buildings(val name: String) {
         neighbourBuildings.add(neighbour)
     }
 }
-
+enum class BuildingE(val building: String) {
+    DC("Davis Center (DC)"),
+    QNC("Quantum Nano Center (QNC)"),
+    STC("Science Teaching Complex (STC)"),
+    MC("Mathematics and Computing (MC)"),
+    PAC("Physical Activity Center (PAC)"),
+    B2("Biology 2 (B2)"),
+    M3("Mathematics 3 (M3)"),
+    EIT("Centre for Environmental Information Technology (EIT)"),
+}
 fun initBuildings(): Map<String, Buildings>  {
     val buildings = arrayOf(
         "Davis Center (DC)",
@@ -62,6 +71,9 @@ fun initBuildings(): Map<String, Buildings>  {
     buildings.forEach { key ->
         val instance = Buildings(key)
         listOfBuildings[key] = instance
+        when (key) {
+            else -> listOfBuildings[key]?.addNeighbouringBuildings(Buildings(key))
+        }
         listOfBuildings[key]?.addNeighbouringBuildings(Buildings(key))
     }
     return listOfBuildings
