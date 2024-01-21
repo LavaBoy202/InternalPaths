@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
                         // Top Dropdown Menu
 
                         // Greeting Text
-                        Greeting("Lavan")
                         DropDownMenu(buildings = initBuildings())
                         DropDownMenu(buildings = initBuildings())
 
@@ -66,7 +65,7 @@ fun GreetingPreview() {
 fun DropDownMenu(buildings: Map<String, Buildings>) {
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(buildings["Davis Center"]?.name ?:" ")}
+    var selectedText by remember { mutableStateOf(buildings["Davis Center"]?.name ?:"")}
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -89,8 +88,10 @@ fun DropDownMenu(buildings: Map<String, Buildings>) {
             )
 
             ExposedDropdownMenu(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
+
             ) {
                 buildings.forEach { item ->
                     DropdownMenuItem(
