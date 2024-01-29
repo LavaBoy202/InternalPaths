@@ -4,7 +4,7 @@
 ## Description
 I recently discovered that the University of Waterloo has many internal paths to builidngs all over their campus to keep their students warm.
 These paths range from builing to building, go underground, and can be difficult for students to navigate.
-<br>InternalPaths is an app I created to give students a guide to how they can find their way around campus taking advantage of indoor walking routes!
+<br>InternalPaths provides students with a guide to help find their way around campus while taking advantage of indoor walking routes!
 
 ## Acknowledgments
 Here's the link to the document the University of Watelroo provided for their campus indoor walking routes
