@@ -1,5 +1,5 @@
-# Project Title
-InternalPaths
+# InternalPaths
+
 
 ## Description
 I recently discovered that the University of Waterloo has many internal paths to builidngs all over their campus to keep their students warm.
@@ -8,4 +8,4 @@ InternalPaths is an app I created to give students a guide to how they can find 
 
 ## Acknowledgments
 Here's the link to the document the University of Watelroo provided for their campus indoor walking routes
-* [UWaterloo](https://uwaterloo.ca/healthy-workplace/sites/ca.healthy-workplace/files/uploads/files/uwaterloo_indoor_walking_routes_1.pdf)
+* [UWaterloo Indoor Walking Routes](https://uwaterloo.ca/healthy-workplace/sites/ca.healthy-workplace/files/uploads/files/uwaterloo_indoor_walking_routes_1.pdf)
