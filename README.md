@@ -3,7 +3,7 @@
 
 ## Description
 I recently discovered that the University of Waterloo has many internal paths to builidngs all over their campus to keep their students warm.
-These paths range from builing to building, go underground, and can be difficult for students to navigate.
+<br>These paths range from builing to building, go underground, and can be difficult for students to navigate.
 <br>InternalPaths provides students with a guide to help find their way around campus while taking advantage of indoor walking routes!
 
 ## Acknowledgments
