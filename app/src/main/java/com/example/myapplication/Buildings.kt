@@ -77,6 +77,19 @@ fun initBuildings(): Map<String, Buildings>  {
         val instance = Buildings(key)
         listOfBuildings[key] = instance
         listOfBuildings[key]?.addNeighbouringBuildings(Buildings(key))
+        when key {
+            DC -> {
+                var neighbours = mutableListOf<BuildingE>
+                neighbours.add(MC)
+                neighbours.add(M3)
+                neighbours.add(EIT)
+                neighbours.add(E3)
+                neighbours.forEach{e ->
+                val nei = Building(e)}
+                
+                listOfBuildings[key]?.addNeighbouringBuildings(Buildings(key))
+            }
+        }
     }
     return listOfBuildings
 }
