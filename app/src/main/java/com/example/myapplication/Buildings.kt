@@ -50,28 +50,6 @@ enum class BuildingE(val building: String) {
     CPH("Carl A. Pollock Hall (CPH)"),
 }
 fun initBuildings(): Map<String, Buildings>  {
-    /*val buildings = arrayOf(
-        "Environment 1 (EV3)",
-        "Environment 2 (EV3)",
-        "Environment 3 (EV3)",
-        "Health Expansion Building(EXP)",
-        "Federation Hall (FED)",
-        "Graduate House (GH)",
-        "General Services Complex (GSC)",
-        "J.G. Hagey Hall of the Humanities(HH)",
-        "Lyle S. Hallman Institute for Health Promotion (LHI)",
-       "Dana Porter Library (LIB)",
-        "Modern Languages (ML)",
-        "Ira G. Needles Hall and Extension (NH)",
-        "School of Optometry and Vision Science (OPT)",
-        "Psychology, Anthropology, Sociology (PAS)",
-        "William M. Tatham Centre for Co-operative Education & Career Action (TC)",
-        "Arts Lecture Hall (AL)",
-        "B.C. Matthews Hall (BMH)",
-        "Chemistry 2 (C2)",
-        "Columbia Icefield (CIF)",
-        "Carl A. Pollock Hall (CPH)",
-    )*/
     val listOfBuildings = mutableMapOf<String, Buildings>()
     buildingsE.forEach { key ->
         val instance = Buildings(key)
