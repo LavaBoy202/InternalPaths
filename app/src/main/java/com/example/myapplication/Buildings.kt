@@ -54,7 +54,6 @@ fun initBuildings(): Map<String, Buildings>  {
     buildingsE.forEach { key ->
         val instance = Buildings(key)
         listOfBuildings[key] = instance
-        listOfBuildings[key]?.addNeighbouringBuildings(Buildings(key))
         var neighbours = mutableListOf<BuildingE>
         when key {
             DC -> {
@@ -63,6 +62,7 @@ fun initBuildings(): Map<String, Buildings>  {
                 neighbours.add(M3)
                 neighbours.add(EIT)
                 neighbours.add(E3)
+                neighbours.add(DC)
             }
             MC -> {
                 var neighbours = mutableListOf<BuildingE>
@@ -70,74 +70,88 @@ fun initBuildings(): Map<String, Buildings>  {
                 neighbours.add(DC)
                 neighbours.add(PAC)
                 neighbours.add(M3)
+                neighbours.add(MC)
             }
             QNC -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(B2)
                 neighbours.add(MC)
+                neighbours.add(QNC)
             }
             EIT -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(DC)
                 neighbours.add(ESC)
                 neighbours.add(PHY)
+                neighbours.add(EIT)
             }
             M3 -> {
                 
                 neighbours.add(MC)
                 neighbours.add(DC)
+                neighbours.add(M3)
             }
             E3 -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(DC)
                 neighbours.add(E5)
+                neighbours.add(E3)
             }
             B2 -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(STC)
                 neighbours.add(B1)
                 neighbours.add(QNC)
+                neighbours.add(B2)
             }
             B1 -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(ESC)
                 neighbours.add(B2)
+                neighbours.add(B1)
             }
             E2 -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(RCH)
                 neighbours.add(PHY)
                 neighbours.add(DWE)
+                neighbours.add(E2)
             }
             E5 -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(E3)
                 neighbours.add(E7)
+                neighbours.add(E5)
             }
             E6 -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(E7)
+                neighbours.add(E6)
             }
             ESC -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(EIT)
                 neighbours.add(B1)
+                neighbours.add(ESC)
             }
             PHY -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(E2)
                 neighbours.add(EIT)
+                neighbours.add(PHY)
             }
             RCH -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(DWE)
                 neighbours.add(PHY)
                 neighbours.add(E2)
+                neighbours.add(RCH)
             }
             DWE -> {
                 var neighbours = mutableListOf<BuildingE>
                 neighbours.add(E2)
                 neighbours.add(RCH)
+                neighbours.add(DWE)
             }
 
         }
