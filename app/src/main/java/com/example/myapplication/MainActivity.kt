@@ -13,6 +13,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun FilledTonalButtonExample(onClick: () -> Unit) {
-    FilledTonalButton(onClick = { onClick() }) {
+    FilledTonalButton(onClick = { onClick() }, colors = ButtonDefaults.buttonColors(containerColor = Color.Black ) ) {
         Text("Submit")
     }
 }
