@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                         // Greeting Text
                         DropDownMenu(buildings = initBuildings())
                         DropDownMenu(buildings = initBuildings())
-
+                        FilledTonalButtonExample { }
                     }
                 }
             }
@@ -44,12 +44,16 @@ class MainActivity : ComponentActivity() {
 }
 
 
-
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun FilledTonalButtonExample(onClick: () -> Unit) {
+    FilledTonalButton(onClick = { onClick() }) {
+        Text("Submit")
+    }
+}
+@Composable
+fun Greeting() {
     Text(
-        text = "Hi my name is $name!",
-        modifier = modifier
+        text = "Hi my name is LAVAN",
     )
 }
 
@@ -57,7 +61,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     MyApplicationTheme {
-        Greeting("Lavan")
+        Greeting()
     }
 }
 
