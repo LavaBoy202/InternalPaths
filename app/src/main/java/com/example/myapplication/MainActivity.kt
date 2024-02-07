@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import java.time.format.TextStyle
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         // Greeting Text
                         DropDownMenu(buildings = initBuildings())
                         DropDownMenu(buildings = initBuildings())
-                        FilledTonalButtonExample { }
+                        FilledTonalButtonExample()
                     }
                 }
             }
@@ -46,9 +47,10 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun FilledTonalButtonExample(onClick: () -> Unit) {
-    FilledTonalButton(onClick = { onClick() }, colors = ButtonDefaults.buttonColors(containerColor = Color.Black ) ) {
-        Text("Submit")
+fun FilledTonalButtonExample() {
+    var buttonText by remember { mutableStateOf("Submit") }
+    FilledTonalButton(onClick = { buttonText = "Clicked" }, colors = ButtonDefaults.buttonColors(containerColor = Color.Black ) ) {
+        Text(buttonText)
     }
 }
 @Composable
