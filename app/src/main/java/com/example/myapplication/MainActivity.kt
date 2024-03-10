@@ -12,11 +12,15 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import java.time.format.TextStyle
 
@@ -28,13 +32,16 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp)
+                        modifier = Modifier.fillMaxWidth()
+                            .padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+
                     ) {
                         // Top Dropdown Menu
 
                         // Greeting Text
+                        Text("UNIVERSITY OF", fontSize = 30.sp, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold)
+                        Text("WATERLOO", fontSize = 30.sp, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold)
                         DropDownMenu(buildings = initBuildings())
                         DropDownMenu(buildings = initBuildings())
                         FilledTonalButtonExample()
@@ -73,10 +80,12 @@ fun DropDownMenu(buildings: Map<String, Buildings>) {
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
     var selectedText by remember { mutableStateOf(buildings["Davis Center"]?.name ?:"")}
-    Box(
+    Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(32.dp)
+            .padding(0.dp, 32.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
     ) {
         ExposedDropdownMenuBox(
             modifier = Modifier.verticalScroll(rememberScrollState()),
