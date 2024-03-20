@@ -56,7 +56,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun FilledTonalButtonExample() {
     var buttonText by remember { mutableStateOf("Submit") }
-    FilledTonalButton(onClick = { buttonText = "Clicked" }, colors = ButtonDefaults.buttonColors(containerColor = Color.Black ) ) {
+    FilledTonalButton(onClick = {
+        val startBuilding = "DC"
+        val targetBuilding = "M3"
+        val Buildings = initBuildings()
+        buttonText = PathExists(startBuilding, targetBuilding, Buildings).toString()
+
+    }, colors = ButtonDefaults.buttonColors(containerColor = Color.Black ) ) {
         Text(buttonText)
     }
 }

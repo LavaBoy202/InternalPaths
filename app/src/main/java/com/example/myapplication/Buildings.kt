@@ -49,122 +49,63 @@ enum class BuildingE(val building: String) {
     CIF("Columbia Icefield (CIF)"),
     CPH("Carl A. Pollock Hall (CPH)"),
 }
-fun initBuildings(): Map<String, Buildings>  {
+fun initBuildings(): Map<String, Buildings> {
     val listOfBuildings = mutableMapOf<String, Buildings>()
-    for (key in BuildingE.values()){
+    val neighboursMap = mutableMapOf<BuildingE, List<BuildingE>>()
+
+    //Neighbours of each building
+    neighboursMap[BuildingE.DC] = listOf(BuildingE.MC, BuildingE.M3, BuildingE.EIT, BuildingE.E3)
+    neighboursMap[BuildingE.MC] = listOf(BuildingE.QNC, BuildingE.DC, BuildingE.PAC, BuildingE.M3)
+    neighboursMap[BuildingE.QNC] = listOf(BuildingE.B2, BuildingE.MC)
+    neighboursMap[BuildingE.EIT] = listOf(BuildingE.DC, BuildingE.ESC, BuildingE.PHY)
+    neighboursMap[BuildingE.M3] = listOf(BuildingE.MC, BuildingE.DC)
+    neighboursMap[BuildingE.E3] = listOf(BuildingE.DC, BuildingE.E5)
+    neighboursMap[BuildingE.B2] = listOf(BuildingE.STC, BuildingE.B1, BuildingE.QNC)
+    neighboursMap[BuildingE.B1] = listOf(BuildingE.ESC, BuildingE.B2)
+    neighboursMap[BuildingE.E2] = listOf(BuildingE.RCH, BuildingE.PHY, BuildingE.DWE)
+    neighboursMap[BuildingE.E5] = listOf(BuildingE.E3, BuildingE.E7)
+    neighboursMap[BuildingE.E6] = listOf(BuildingE.E7)
+    neighboursMap[BuildingE.ESC] = listOf(BuildingE.EIT, BuildingE.B1)
+    neighboursMap[BuildingE.PHY] = listOf(BuildingE.E2, BuildingE.EIT)
+    neighboursMap[BuildingE.RCH] = listOf(BuildingE.DWE, BuildingE.PHY, BuildingE.E2)
+    neighboursMap[BuildingE.DWE] = listOf(BuildingE.E2, BuildingE.RCH)
+
+    // Initialize buildings and add neighbors
+    for (key in BuildingE.values()) {
         val instance = Buildings(key.building)
         listOfBuildings[key.building] = instance
-        var neighbours = mutableListOf<BuildingE>()
-        when (key) {
-            BuildingE.DC -> {
-            var neighbours = mutableListOf<BuildingE>();
-            neighbours.add(BuildingE.MC);
-            neighbours.add(BuildingE.M3)
-            neighbours.add(BuildingE.EIT)
-            neighbours.add(BuildingE.E3)
-            neighbours.add(BuildingE.DC)
+        val neighbours = neighboursMap[key] ?: emptyList()
+        neighbours.forEach { neighbour ->
+            instance.addNeighbouringBuildings(Buildings(neighbour.building))
         }
-            BuildingE.DC -> {
-                var neighbours = mutableListOf<BuildingE>();
-                neighbours.add(BuildingE.MC);
-                neighbours.add(BuildingE.M3)
-                neighbours.add(BuildingE.EIT)
-                neighbours.add(BuildingE.E3)
-                neighbours.add(BuildingE.DC)
-            }
-            BuildingE.MC -> {
-                var neighbours = mutableListOf<BuildingE>();
-                neighbours.add(BuildingE.QNC)
-                neighbours.add(BuildingE.DC)
-                neighbours.add(BuildingE.PAC)
-                neighbours.add(BuildingE.M3)
-                neighbours.add(BuildingE.MC)
-            }
-            BuildingE.QNC -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.B2)
-                neighbours.add(BuildingE.MC)
-                neighbours.add(BuildingE.QNC)
-            }
-            BuildingE.EIT -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.DC)
-                neighbours.add(BuildingE.ESC)
-                neighbours.add(BuildingE.PHY)
-                neighbours.add(BuildingE.EIT)
-            }
-            BuildingE.M3 -> {
-
-                neighbours.add(BuildingE.MC)
-                neighbours.add(BuildingE.DC)
-                neighbours.add(BuildingE.M3)
-            }
-            BuildingE.E3 -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.DC)
-                neighbours.add(BuildingE.E5)
-                neighbours.add(BuildingE.E3)
-            }
-            BuildingE.B2 -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.STC)
-                neighbours.add(BuildingE.B1)
-                neighbours.add(BuildingE.QNC)
-                neighbours.add(BuildingE.B2)
-            }
-            BuildingE.B1 -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.ESC)
-                neighbours.add(BuildingE.B2)
-                neighbours.add(BuildingE.B1)
-            }
-            BuildingE.E2 -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.RCH)
-                neighbours.add(BuildingE.PHY)
-                neighbours.add(BuildingE.DWE)
-                neighbours.add(BuildingE.E2)
-            }
-            BuildingE.E5 -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.E3)
-                neighbours.add(BuildingE.E7)
-                neighbours.add(BuildingE.E5)
-            }
-            BuildingE.E6 -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.E7)
-                neighbours.add(BuildingE.E6)
-            }
-            BuildingE.ESC -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.EIT)
-                neighbours.add(BuildingE.B1)
-                neighbours.add(BuildingE.ESC)
-            }
-            BuildingE.PHY -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.E2)
-                neighbours.add(BuildingE.EIT)
-                neighbours.add(BuildingE.PHY)
-            }
-            BuildingE.RCH -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.DWE)
-                neighbours.add(BuildingE.PHY)
-                neighbours.add(BuildingE.E2)
-                neighbours.add(BuildingE.RCH)
-            }
-            BuildingE.DWE -> {
-                var neighbours = mutableListOf<BuildingE>()
-                neighbours.add(BuildingE.E2)
-                neighbours.add(BuildingE.RCH)
-                neighbours.add(BuildingE.DWE)
-            }
-            else -> {
-        }
-
-    }
     }
     return listOfBuildings
+}
+
+fun BuildingDFS(startBuilding: Buildings, endingBuilding: Buildings, visited: MutableSet<Buildings>): Boolean{
+    if(startBuilding == endingBuilding){
+        return true;
+    }
+    visited.add(startBuilding)
+    for (i in startBuilding.neighbourBuildings){
+        if (i !in visited){
+            if(BuildingDFS(i, endingBuilding, visited)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+fun PathExists(Start: String, End: String, buildings: Map<String, Buildings>) : Boolean{
+    if (!buildings.containsKey(Start) || !buildings.containsKey(End)) {
+        return false
+    }
+    val startingBuilding = buildings[Start]!!
+    val endingBuilding = buildings[End]!!
+
+    val visited = mutableSetOf<Buildings>()
+
+    return BuildingDFS(startingBuilding, endingBuilding, visited)
+
+
 }
