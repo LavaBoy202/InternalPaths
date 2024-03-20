@@ -4,6 +4,7 @@ package com.example.myapplication
 import com.example.myapplication.Buildings
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -32,7 +33,8 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     Column(
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
                             .padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
 
@@ -57,12 +59,14 @@ class MainActivity : ComponentActivity() {
 fun FilledTonalButtonExample() {
     var buttonText by remember { mutableStateOf("Submit") }
     FilledTonalButton(onClick = {
-        val startBuilding = "DC"
-        val targetBuilding = "M3"
+        val startBuilding = BuildingE.DC.building
+        val targetBuilding = BuildingE.M3.building
         val Buildings = initBuildings()
-        buttonText = PathExists(startBuilding, targetBuilding, Buildings).toString()
 
-    }, colors = ButtonDefaults.buttonColors(containerColor = Color.Black ) ) {
+        val pathExists = PathExists(BuildingE.DC.building, BuildingE.M3.building, Buildings)
+        buttonText = pathExists.toString()
+        Log.i("PathExists", "Path exists between $startBuilding and $targetBuilding: $pathExists")
+    }, colors = ButtonDefaults.buttonColors(containerColor = Color.Black)) {
         Text(buttonText)
     }
 }

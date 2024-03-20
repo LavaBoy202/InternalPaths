@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.os.Build
+import android.util.Log
 
 class Buildings(val name: String) {
     var neighbourBuildings:MutableList<Buildings> = mutableListOf()
@@ -83,7 +84,8 @@ fun initBuildings(): Map<String, Buildings> {
 }
 
 fun BuildingDFS(startBuilding: Buildings, endingBuilding: Buildings, visited: MutableSet<Buildings>): Boolean{
-    if(startBuilding == endingBuilding){
+    Log.i("Checking", "Path exists between ${startBuilding.name} and ${endingBuilding.name}:")
+    if(startBuilding.name == endingBuilding.name){
         return true;
     }
     visited.add(startBuilding)
@@ -96,12 +98,12 @@ fun BuildingDFS(startBuilding: Buildings, endingBuilding: Buildings, visited: Mu
     }
     return false;
 }
-fun PathExists(Start: String, End: String, buildings: Map<String, Buildings>) : Boolean{
-    if (!buildings.containsKey(Start) || !buildings.containsKey(End)) {
+fun PathExists(start: String, end: String, buildings: Map<String, Buildings>) : Boolean{
+    if (!buildings.containsKey(start) || !buildings.containsKey(end)) {
         return false
     }
-    val startingBuilding = buildings[Start]!!
-    val endingBuilding = buildings[End]!!
+    val startingBuilding = buildings[start]!!
+    val endingBuilding = buildings[end]!!
 
     val visited = mutableSetOf<Buildings>()
 
