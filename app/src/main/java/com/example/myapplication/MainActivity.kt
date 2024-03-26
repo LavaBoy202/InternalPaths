@@ -8,14 +8,20 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -42,11 +48,25 @@ class MainActivity : ComponentActivity() {
                         // Top Dropdown Menu
 
                         // Greeting Text
-                        Text("UNIVERSITY OF", fontSize = 30.sp, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold)
-                        Text("WATERLOO", fontSize = 30.sp, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold)
-                        DropDownMenu(buildings = initBuildings())
-                        DropDownMenu(buildings = initBuildings())
-                        FilledTonalButtonExample()
+                        Column(modifier = Modifier.fillMaxWidth().clip(shape = RoundedCornerShape(20.dp)).clip(RoundedCornerShape(10.dp))
+                            .background(Color(0xFF000000), shape = RoundedCornerShape(15.dp))
+                            .height(300.dp)){
+                            Text(text = "UNIVERSITY", fontSize = 40.sp, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold, color = Color(0xFFFFD166))
+                            Text(text = "OF", fontSize = 40.sp, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold, color = Color(0xFFFFD166))
+                            Text(text = "WATERLOO", fontSize = 40.sp, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold, color = Color(0xFFFFD166))
+                        }
+                        Column(modifier = Modifier.fillMaxWidth().clip(shape = RoundedCornerShape(20.dp)).clip(RoundedCornerShape(10.dp))
+                            .background(Color(0xFF878472), shape = RoundedCornerShape(15.dp))
+                            .height(300.dp)){
+                            DropDownMenu(buildings = initBuildings())
+
+
+                            DropDownMenu(buildings = initBuildings())
+
+
+                            FilledTonalButtonExample()
+                        }
+
                     }
                 }
             }
@@ -70,20 +90,6 @@ fun FilledTonalButtonExample() {
         Text(buttonText)
     }
 }
-@Composable
-fun Greeting() {
-    Text(
-        text = "Hi my name is LAVAN",
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyApplicationTheme {
-        Greeting()
-    }
-}
 
 @Composable
 fun DropDownMenu(buildings: Map<String, Buildings>) {
@@ -98,7 +104,7 @@ fun DropDownMenu(buildings: Map<String, Buildings>) {
         horizontalArrangement = Arrangement.Center
     ) {
         ExposedDropdownMenuBox(
-            modifier = Modifier.verticalScroll(rememberScrollState()),
+            modifier = Modifier.verticalScroll(rememberScrollState()).background(Color.Blue),
             expanded = expanded,
             onExpandedChange = {
                 expanded = !expanded
