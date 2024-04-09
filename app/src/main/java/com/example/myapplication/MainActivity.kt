@@ -129,7 +129,7 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
             },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD166), contentColor = Color.Black)
         ) {
-            Text(buttonText)
+            Text(text = buttonText, fontWeight = FontWeight.Bold)
         }
     }
 }
