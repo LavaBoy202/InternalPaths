@@ -165,7 +165,7 @@ fun DropDownMenu(
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                colors = ExposedDropdownMenuDefaults.textFieldColors(containerColor = Color(0xFFFFD166)),
+                colors = ExposedDropdownMenuDefaults.textFieldColors(containerColor = Color(0xFFFFD166), focusedIndicatorColor = Color(0xFFCE9E00)),
                 modifier = Modifier.menuAnchor(),
                 textStyle = LocalTextStyle.current.copy(
                     textAlign = TextAlign.Center,
