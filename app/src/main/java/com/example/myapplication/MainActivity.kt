@@ -66,15 +66,14 @@ class MainActivity : ComponentActivity() {
                         }
                         Column(modifier = Modifier
                             .fillMaxWidth()
+                            .padding(top = 36.dp)
                             .clip(shape = RoundedCornerShape(20.dp))
-                            .clip(RoundedCornerShape(10.dp))
-                            .background(Color(0xFF878472), shape = RoundedCornerShape(15.dp))
-                            .fillMaxHeight()){
+                            .background(Color(0xFFFFFFFF), shape = RoundedCornerShape(15.dp))
+                            .fillMaxHeight(), verticalArrangement = Arrangement.spacedBy(20.dp)){
                             DropDownMenu(buildings = initBuildings(), 1)
                             DropDownMenu(buildings = initBuildings(), 2)
                             FilledTonalButtonExample()
                         }
-
                     }
                 }
             }
@@ -126,20 +125,14 @@ fun DropDownMenu(buildings: Map<String, Buildings>, number: Int) {
         ExposedDropdownMenuBox(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .background(Color.Blue),
+                .background(Color.Black),
             expanded = expanded,
             onExpandedChange = {
                 expanded = !expanded
             },
 
+
         ) {
-
-            Icon(
-                imageVector = Icons.Filled.AccountCircle,
-                contentDescription = "Localized description",
-                modifier = Modifier.size(50.dp)
-
-            )
             TextField(
                 value = if(number == 1) selectedText else selectedText2,
                 onValueChange = {},
@@ -147,11 +140,13 @@ fun DropDownMenu(buildings: Map<String, Buildings>, number: Int) {
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 colors = ExposedDropdownMenuDefaults.textFieldColors(containerColor = Color(0xFFFFD166),),
                 modifier = Modifier.menuAnchor(),
-                textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center)
+                textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold)
             )
 
             ExposedDropdownMenu(
-                modifier = Modifier.verticalScroll(rememberScrollState()),
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .heightIn(max = 200.dp),
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
 
@@ -160,9 +155,9 @@ fun DropDownMenu(buildings: Map<String, Buildings>, number: Int) {
                     DropdownMenuItem(
                         text = { Text(text = item.key) },
                         onClick = {
-                            selectedText = item.key
+                            if(number == 1) selectedText = item.key else selectedText2 = item.key
                             expanded = false
-                            Toast.makeText(context, item.key, Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(context, item.key, Toast.LENGTH_SHORT).show()
                         }
                     )
                 }
