@@ -43,36 +43,62 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
-                // A surface container using the 'background' color from the theme
+                // Variables to hold selected building names
+                var selectedText by remember { mutableStateOf("Davis Center") }
+                var selectedText2 by remember { mutableStateOf("Davis Center") }
+
                 Surface(modifier = Modifier.fillMaxSize(), color = Color.Black) {
                     Column(
-                        modifier = Modifier
-                            .fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        // Top Dropdown Menu
-                        // Greeting Text
-                        Column(modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(shape = RoundedCornerShape(20.dp))
-                            .clip(RoundedCornerShape(10.dp))
-                            .background(Color(0xFF000000), shape = RoundedCornerShape(15.dp))
-                            .height(400.dp),
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(shape = RoundedCornerShape(20.dp))
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(Color(0xFF000000), shape = RoundedCornerShape(15.dp))
+                                .height(400.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center){
-                            Text(text = "UNIVERSITY", fontSize = 44.sp, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold, color = Color(0xFFFFD166))
-                            Text(text = "OF", fontSize = 44.sp, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold, color = Color(0xFFFFD166))
-                            Text(text = "WATERLOO", fontSize = 44.sp, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold, color = Color(0xFFFFD166))
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = "UNIVERSITY",
+                                fontSize = 44.sp,
+                                fontFamily = FontFamily.SansSerif,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFFFFD166)
+                            )
+                            Text(
+                                text = "OF",
+                                fontSize = 44.sp,
+                                fontFamily = FontFamily.SansSerif,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFFFFD166)
+                            )
+                            Text(
+                                text = "WATERLOO",
+                                fontSize = 44.sp,
+                                fontFamily = FontFamily.SansSerif,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFFFFD166)
+                            )
                         }
-                        Column(modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 36.dp)
-                            .clip(shape = RoundedCornerShape(20.dp))
-                            .background(Color(0xFFFFFFFF), shape = RoundedCornerShape(15.dp))
-                            .fillMaxHeight(), verticalArrangement = Arrangement.spacedBy(20.dp)){
-                            DropDownMenu(buildings = initBuildings(), 1)
-                            DropDownMenu(buildings = initBuildings(), 2)
-                            FilledTonalButtonExample()
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 36.dp)
+                                .clip(shape = RoundedCornerShape(20.dp))
+                                .background(Color(0xFFFFFFFF), shape = RoundedCornerShape(15.dp))
+                                .fillMaxHeight(), verticalArrangement = Arrangement.spacedBy(20.dp)
+                        ) {
+                            DropDownMenu(buildings = initBuildings(), 1) { text ->
+                                selectedText = text
+                            }
+                            DropDownMenu(buildings = initBuildings(), 2) { text ->
+                                selectedText2 = text
+                            }
+                            FilledTonalButtonExample(selectedText, selectedText2)
                         }
                     }
                 }
@@ -81,9 +107,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
-fun FilledTonalButtonExample() {
+fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
     var buttonText by remember { mutableStateOf("Submit") }
     Column(
         modifier = Modifier
@@ -93,11 +118,11 @@ fun FilledTonalButtonExample() {
     ) {
         FilledTonalButton(
             onClick = {
-                val startBuilding = BuildingE.DC.building
-                val targetBuilding = BuildingE.M3.building
+                val startBuilding = selectedText
+                val targetBuilding = selectedText2
                 val Buildings = initBuildings()
 
-                val pathExists = PathExists(BuildingE.DC.building, BuildingE.M3.building, Buildings)
+                val pathExists = PathExists(startBuilding, targetBuilding, Buildings)
                 buttonText = pathExists.toString()
                 Log.i("PathExists", "Path exists between $startBuilding and $targetBuilding: $pathExists")
             },
@@ -109,18 +134,21 @@ fun FilledTonalButtonExample() {
 }
 
 @Composable
-fun DropDownMenu(buildings: Map<String, Buildings>, number: Int) {
+fun DropDownMenu(
+    buildings: Map<String, Buildings>,
+    number: Int,
+    onItemSelected: (String) -> Unit // Callback to update selected text
+) {
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(buildings["Davis Center"]?.name ?:"FROM")}
-    var selectedText2 by remember { mutableStateOf(buildings["Davis Center"]?.name ?:"TO")}
+    var selectedText by remember { mutableStateOf(buildings["Davis Center"]?.name ?: "FROM") }
+    var selectedText2 by remember { mutableStateOf(buildings["Davis Center"]?.name ?: "TO") }
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(0.dp, 32.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
-
     ) {
         ExposedDropdownMenuBox(
             modifier = Modifier
@@ -130,32 +158,38 @@ fun DropDownMenu(buildings: Map<String, Buildings>, number: Int) {
             onExpandedChange = {
                 expanded = !expanded
             },
-
-
         ) {
             TextField(
-                value = if(number == 1) selectedText else selectedText2,
+                value = if (number == 1) selectedText else selectedText2,
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                colors = ExposedDropdownMenuDefaults.textFieldColors(containerColor = Color(0xFFFFD166),),
+                colors = ExposedDropdownMenuDefaults.textFieldColors(containerColor = Color(0xFFFFD166)),
                 modifier = Modifier.menuAnchor(),
-                textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center, fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold)
+                textStyle = LocalTextStyle.current.copy(
+                    textAlign = TextAlign.Center,
+                    fontFamily = FontFamily.SansSerif,
+                    fontWeight = FontWeight.Bold
+                )
             )
-
             ExposedDropdownMenu(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
                     .heightIn(max = 200.dp),
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
-
             ) {
                 buildings.forEach { item ->
                     DropdownMenuItem(
                         text = { Text(text = item.key) },
                         onClick = {
-                            if(number == 1) selectedText = item.key else selectedText2 = item.key
+                            if (number == 1) {
+                                selectedText = item.key
+                                onItemSelected(item.key) // Update selected text using the callback
+                            } else {
+                                selectedText2 = item.key
+                                onItemSelected(item.key) // Update selected text using the callback
+                            }
                             expanded = false
                             //Toast.makeText(context, item.key, Toast.LENGTH_SHORT).show()
                         }
