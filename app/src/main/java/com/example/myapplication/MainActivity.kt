@@ -58,7 +58,7 @@ class MainActivity : ComponentActivity() {
                                 .clip(shape = RoundedCornerShape(20.dp))
                                 .clip(RoundedCornerShape(10.dp))
                                 .background(Color(0xFF000000), shape = RoundedCornerShape(15.dp))
-                                .height(400.dp),
+                                .height(300.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center
                         ) {
@@ -90,7 +90,7 @@ class MainActivity : ComponentActivity() {
                                 .padding(top = 36.dp)
                                 .clip(shape = RoundedCornerShape(20.dp))
                                 .background(Color(0xFFFFFFFF), shape = RoundedCornerShape(15.dp))
-                                .fillMaxHeight(), verticalArrangement = Arrangement.spacedBy(20.dp)
+                                .fillMaxHeight(),
                         ) {
                             DropDownMenu(buildings = initBuildings(), 1) { text ->
                                 selectedText = text
@@ -98,6 +98,7 @@ class MainActivity : ComponentActivity() {
                             DropDownMenu(buildings = initBuildings(), 2) { text ->
                                 selectedText2 = text
                             }
+                            Spacer(modifier = Modifier.height(20.dp))
                             FilledTonalButtonExample(selectedText, selectedText2)
                         }
                     }
