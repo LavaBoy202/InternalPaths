@@ -82,32 +82,31 @@ fun initBuildings(): Map<String, Buildings> {
     }
     return listOfBuildings
 }
+fun PathExists(start: String, end: String, buildings: Map<String, Buildings>): Boolean {
+    val visited = mutableSetOf<String>()
+    val startBuilding = buildings[start] ?: return false
+    val endBuilding = buildings[end] ?: return false
+    //val buildings2 = initBuildings()
+    return dfs(startBuilding, endBuilding, buildings, visited)
+}
 
-fun BuildingDFS(startBuilding: Buildings, endingBuilding: Buildings, visited: MutableSet<Buildings>): Boolean{
-    Log.i("Checking", "Path exists between ${startBuilding.name} and ${endingBuilding.name}:")
-    if(startBuilding.name == endingBuilding.name){
-        return true;
+fun dfs(current: Buildings, endBuilding: Buildings, buildings: Map<String, Buildings>, visited: MutableSet<String>): Boolean {
+    println("Visiting ${current.name}")
+    println("Neighboring buildings of ${current.name}: ${current.neighbourBuildings.map { it.name }}")
+    visited.add(current.name)
+    if (current == endBuilding) {
+        return true
     }
-    visited.add(startBuilding)
-    for (i in startBuilding.neighbourBuildings){
-        if (i !in visited){
-            if(BuildingDFS(i, endingBuilding, visited)){
-                return true;
+    val neighbors = current.neighbourBuildings.mapNotNull { buildings[it.name] }
+    for (neighbor in neighbors) {
+        if (!visited.contains(neighbor.name)) {
+            if (dfs(neighbor, endBuilding, buildings, visited)) {
+                return true
             }
         }
     }
-    return false;
-}
-fun PathExists(start: String, end: String, buildings: Map<String, Buildings>) : Boolean{
-    if (!buildings.containsKey(start) || !buildings.containsKey(end)) {
-        return false
-    }
-    val startingBuilding = buildings[start]!!
-    val endingBuilding = buildings[end]!!
 
-    val visited = mutableSetOf<Buildings>()
-
-    return BuildingDFS(startingBuilding, endingBuilding, visited)
-
-
+    // If no path is found from this building, remove from vistied array
+    visited.remove(current.name)
+    return false
 }

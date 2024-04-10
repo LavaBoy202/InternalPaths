@@ -119,13 +119,11 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
     ) {
         FilledTonalButton(
             onClick = {
-                val startBuilding = selectedText
-                val targetBuilding = selectedText2
-                val Buildings = initBuildings()
-
-                val pathExists = PathExists(startBuilding, targetBuilding, Buildings)
+                val buildings = initBuildings()
+                val start = selectedText
+                val end = selectedText2
+                val pathExists = PathExists(start, end, buildings)
                 buttonText = pathExists.toString()
-                Log.i("PathExists", "Path exists between $startBuilding and $targetBuilding: $pathExists")
             },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD166), contentColor = Color.Black)
         ) {
