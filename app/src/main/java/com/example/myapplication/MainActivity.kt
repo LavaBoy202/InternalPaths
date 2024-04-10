@@ -37,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import kotlinx.coroutines.delay
 import java.time.format.TextStyle
 
 class MainActivity : ComponentActivity() {
@@ -126,6 +127,12 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
             .fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        LaunchedEffect(isVisible) {
+            if (isVisible) {
+                delay(3000)
+                isVisible = false
+            }
+        }
         FilledTonalButton(
             onClick = {
                 val buildings = initBuildings()
