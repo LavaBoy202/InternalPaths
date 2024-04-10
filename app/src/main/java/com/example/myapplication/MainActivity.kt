@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -46,6 +47,9 @@ class MainActivity : ComponentActivity() {
                 // Variables to hold selected building names
                 var selectedText by remember { mutableStateOf("Davis Center") }
                 var selectedText2 by remember { mutableStateOf("Davis Center") }
+                var visible by remember {
+                    mutableStateOf(true)
+                }
 
                 Surface(modifier = Modifier.fillMaxSize(), color = Color.Black) {
                     Column(
@@ -100,6 +104,8 @@ class MainActivity : ComponentActivity() {
                             }
                             Spacer(modifier = Modifier.height(20.dp))
                             FilledTonalButtonExample(selectedText, selectedText2)
+                            AnimatedVisibility(visible) {
+                            }
                         }
                     }
                 }
@@ -111,6 +117,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
     var buttonText by remember { mutableStateOf("Submit") }
+    var isVisible by remember { mutableStateOf(false) } // State to control visibility of animation
+    var pathExists by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -122,15 +131,23 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
                 val buildings = initBuildings()
                 val start = selectedText
                 val end = selectedText2
-                val pathExists = PathExists(start, end, buildings)
-                buttonText = pathExists.toString()
+                pathExists = PathExists(start, end, buildings)
+                buttonText = "SEARCH"
+                isVisible = true
             },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD166), contentColor = Color.Black)
         ) {
             Text(text = buttonText, fontWeight = FontWeight.Bold)
         }
+        AnimatedVisibility(visible = isVisible && pathExists == true) {
+            Text(modifier = Modifier.padding(10.dp),text = "Found a Path!", color = Color(0xFF2C6E49), fontWeight = FontWeight.Bold, fontSize = 32.sp)
+        }
+        AnimatedVisibility(visible = isVisible && pathExists == false) {
+            Text(modifier = Modifier.padding(10.dp), text = "No Path Found :(", color = Color(0xFFAE3C3C), fontWeight = FontWeight.Bold, fontSize = 32.sp)
+        }
     }
 }
+
 
 @Composable
 fun DropDownMenu(
@@ -184,13 +201,12 @@ fun DropDownMenu(
                         onClick = {
                             if (number == 1) {
                                 selectedText = item.key
-                                onItemSelected(item.key) // Update selected text using the callback
+                                onItemSelected(item.key)
                             } else {
                                 selectedText2 = item.key
-                                onItemSelected(item.key) // Update selected text using the callback
+                                onItemSelected(item.key)
                             }
                             expanded = false
-                            //Toast.makeText(context, item.key, Toast.LENGTH_SHORT).show()
                         }
                     )
                 }
