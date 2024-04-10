@@ -45,8 +45,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApplicationTheme {
                 // Variables to hold selected building names
-                var selectedText by remember { mutableStateOf("Davis Center") }
-                var selectedText2 by remember { mutableStateOf("Davis Center") }
+                var selectedText by remember { mutableStateOf("") }
+                var selectedText2 by remember { mutableStateOf("") }
                 var visible by remember {
                     mutableStateOf(true)
                 }
@@ -142,8 +142,14 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
         AnimatedVisibility(visible = isVisible && pathExists == true) {
             Text(modifier = Modifier.padding(10.dp),text = "Found a Path!", color = Color(0xFF2C6E49), fontWeight = FontWeight.Bold, fontSize = 32.sp)
         }
-        AnimatedVisibility(visible = isVisible && pathExists == false) {
+        AnimatedVisibility(visible = isVisible && pathExists == false && selectedText != "" && selectedText2 != "") {
             Text(modifier = Modifier.padding(10.dp), text = "No Path Found :(", color = Color(0xFFAE3C3C), fontWeight = FontWeight.Bold, fontSize = 32.sp)
+        }
+        AnimatedVisibility(visible = isVisible && selectedText == "") {
+            Text(modifier = Modifier.padding(10.dp), text = "Please Select Start Building", color = Color(0xFFAE3C3C), fontWeight = FontWeight.Bold, fontSize = 28.sp)
+        }
+        AnimatedVisibility(visible = isVisible && selectedText2 == "") {
+            Text(modifier = Modifier.padding(10.dp), text = "Please Select End Building", color = Color(0xFFAE3C3C), fontWeight = FontWeight.Bold, fontSize = 28.sp)
         }
     }
 }
