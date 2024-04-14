@@ -56,7 +56,7 @@ fun initBuildings(): Map<String, Buildings> {
 
     //Neighbours of each building
     neighboursMap[BuildingE.DC] = listOf(BuildingE.MC, BuildingE.M3, BuildingE.EIT, BuildingE.E3)
-    neighboursMap[BuildingE.MC] = listOf(BuildingE.QNC, BuildingE.DC, BuildingE.PAC, BuildingE.M3)
+    neighboursMap[BuildingE.MC] = listOf(BuildingE.QNC, BuildingE.DC, BuildingE.PAC, BuildingE.M3, BuildingE.PAC)
     neighboursMap[BuildingE.QNC] = listOf(BuildingE.B2, BuildingE.MC)
     neighboursMap[BuildingE.EIT] = listOf(BuildingE.DC, BuildingE.ESC, BuildingE.PHY)
     neighboursMap[BuildingE.M3] = listOf(BuildingE.MC, BuildingE.DC)
@@ -70,6 +70,8 @@ fun initBuildings(): Map<String, Buildings> {
     neighboursMap[BuildingE.PHY] = listOf(BuildingE.E2, BuildingE.EIT)
     neighboursMap[BuildingE.RCH] = listOf(BuildingE.DWE, BuildingE.PHY, BuildingE.E2)
     neighboursMap[BuildingE.DWE] = listOf(BuildingE.E2, BuildingE.RCH)
+    neighboursMap[BuildingE.SLC] = listOf(BuildingE.PAC, BuildingE.MC)
+    neighboursMap[BuildingE.PAC] = listOf(BuildingE.SLC)
 
     // Initialize buildings and add neighbors
     for (key in BuildingE.values()) {

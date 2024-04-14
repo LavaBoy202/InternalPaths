@@ -10,6 +10,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -29,6 +30,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -146,6 +148,7 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
         ) {
             Text(text = buttonText, fontWeight = FontWeight.Bold)
         }
+
         AnimatedVisibility(visible = isVisible && pathExists == true) {
             Text(modifier = Modifier.padding(10.dp),text = "Found a Path!", color = Color(0xFF2C6E49), fontWeight = FontWeight.Bold, fontSize = 32.sp)
         }
@@ -158,6 +161,11 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
         AnimatedVisibility(visible = isVisible && selectedText2 == "") {
             Text(modifier = Modifier.padding(10.dp), text = "Please Select End Building", color = Color(0xFFAE3C3C), fontWeight = FontWeight.Bold, fontSize = 28.sp)
         }
+        Image(
+            painter = painterResource(id = R.drawable.goose),
+            contentDescription = "GOOSE",
+            modifier = Modifier.size(150.dp).padding(18.dp,0.dp, 0.dp,10.dp)
+        )
     }
 }
 
