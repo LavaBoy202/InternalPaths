@@ -3,19 +3,20 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.myapplication.CampusMapScreen
 import com.example.myapplication.QuickCheckScreen
 
 
 @Composable
 fun InternalPathsApp() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "quickCheckScreen") {
-        composable("quickCheckScreen") {
+    NavHost(navController = navController, startDestination = "QuickCheckScreen") {
+        composable("QuickCheckScreen") {
             QuickCheckScreen(navController = navController)
         }
-//        composable("campusMap") {
-//            CampusMapScreen(navController = navController)
-//        }
+        composable("CampusScreen") {
+            CampusMapScreen(navController = navController)
+        }
 
     }
 }

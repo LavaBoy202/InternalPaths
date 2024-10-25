@@ -1,10 +1,12 @@
 package com.example.myapplication
 
+import SimpleNavBarScaffold
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -47,9 +49,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun QuickCheckScreen(navController: NavController) {
+    SimpleNavBarScaffold(navController, "Quick Check") { QuickCheckScreenContent(navController, it) }
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun QuickCheckScreenContent(navController: NavController, innerPadding: PaddingValues) {
     // Variables to hold selected building names
     var selectedText by remember { mutableStateOf("") }
     var selectedText2 by remember { mutableStateOf("") }
@@ -59,7 +66,7 @@ fun QuickCheckScreen(navController: NavController) {
 
     Surface(modifier = Modifier.fillMaxSize(), color = Color.Black) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
