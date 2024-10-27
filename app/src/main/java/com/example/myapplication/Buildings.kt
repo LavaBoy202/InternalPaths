@@ -54,27 +54,58 @@ fun initBuildings(): Map<String, Buildings> {
     val listOfBuildings = mutableMapOf<String, Buildings>()
     val neighboursMap = mutableMapOf<BuildingE, List<BuildingE>>()
 
-    //Neighbours of each building
+    //Math Buildings
     neighboursMap[BuildingE.DC] = listOf(BuildingE.MC, BuildingE.M3, BuildingE.EIT, BuildingE.E3)
-    neighboursMap[BuildingE.MC] = listOf(BuildingE.QNC, BuildingE.DC, BuildingE.PAC, BuildingE.M3, BuildingE.PAC)
-    neighboursMap[BuildingE.QNC] = listOf(BuildingE.B2, BuildingE.MC)
-    neighboursMap[BuildingE.EIT] = listOf(BuildingE.DC, BuildingE.ESC, BuildingE.PHY)
     neighboursMap[BuildingE.M3] = listOf(BuildingE.MC, BuildingE.DC)
-    neighboursMap[BuildingE.E3] = listOf(BuildingE.DC, BuildingE.E5)
-    neighboursMap[BuildingE.B2] = listOf(BuildingE.STC, BuildingE.B1, BuildingE.QNC)
-    neighboursMap[BuildingE.B1] = listOf(BuildingE.ESC, BuildingE.B2)
-    neighboursMap[BuildingE.E2] = listOf(BuildingE.RCH, BuildingE.PHY, BuildingE.DWE)
+    neighboursMap[BuildingE.MC] = listOf(BuildingE.QNC, BuildingE.DC, BuildingE.PAC, BuildingE.M3, BuildingE.PAC, BuildingE.C2, BuildingE.SLC)
+
+
+
+
+
+    //Engineering Buildings
+    neighboursMap[BuildingE.E3] = listOf(BuildingE.DC, BuildingE.E5, BuildingE.E2)
+    neighboursMap[BuildingE.E2] = listOf(BuildingE.RCH, BuildingE.PHY, BuildingE.DWE, BuildingE.E3, BuildingE.CPH)
     neighboursMap[BuildingE.E5] = listOf(BuildingE.E3, BuildingE.E7)
     neighboursMap[BuildingE.E6] = listOf(BuildingE.E7)
-    neighboursMap[BuildingE.ESC] = listOf(BuildingE.EIT, BuildingE.B1)
-    neighboursMap[BuildingE.PHY] = listOf(BuildingE.E2, BuildingE.EIT)
-    neighboursMap[BuildingE.RCH] = listOf(BuildingE.DWE, BuildingE.PHY, BuildingE.E2)
+    neighboursMap[BuildingE.E7] = listOf(BuildingE.E6, BuildingE.E5)
+    neighboursMap[BuildingE.EIT] = listOf(BuildingE.DC, BuildingE.ESC, BuildingE.PHY)
+    neighboursMap[BuildingE.QNC] = listOf(BuildingE.B2, BuildingE.MC)
     neighboursMap[BuildingE.DWE] = listOf(BuildingE.E2, BuildingE.RCH)
+
+    //Core Sciences Buildings
+    neighboursMap[BuildingE.B2] = listOf(BuildingE.STC, BuildingE.B1, BuildingE.QNC)
+    neighboursMap[BuildingE.B1] = listOf(BuildingE.ESC, BuildingE.B2)
+    neighboursMap[BuildingE.ESC] = listOf(BuildingE.EIT, BuildingE.B1, BuildingE.C2)
+    neighboursMap[BuildingE.PHY] = listOf(BuildingE.E2, BuildingE.EIT)
+    neighboursMap[BuildingE.C2] = listOf(BuildingE.MC, BuildingE.ESC,BuildingE.DC)
+    neighboursMap[BuildingE.STC] = listOf(BuildingE.NH, BuildingE.B2)
+
+    //Arts Buildings
+    neighboursMap[BuildingE.AL] = listOf(BuildingE.ML, BuildingE.EV1,BuildingE.TC)
+    neighboursMap[BuildingE.HH] = listOf(BuildingE.TC, BuildingE.PAS)
+    neighboursMap[BuildingE.ML] = listOf(BuildingE.AL)
+
+    //Social Sciences Building
+    neighboursMap[BuildingE.PAS] = listOf(BuildingE.HH)
+
+    //Environments Buildings
+    neighboursMap[BuildingE.EV1] = listOf(BuildingE.AL, BuildingE.EV2)
+    neighboursMap[BuildingE.EV2] = listOf(BuildingE.EV1, BuildingE.EV2)
+    neighboursMap[BuildingE.EV3] = listOf(BuildingE.EV2)
+
+    //Health Sciences Buildings
+    neighboursMap[BuildingE.LHI] = listOf(BuildingE.EXP, BuildingE.BMH)
+    neighboursMap[BuildingE.BMH] = listOf(BuildingE.EXP, BuildingE.LHI)
+    neighboursMap[BuildingE.EXP] = listOf(BuildingE.BMH, BuildingE.BMH)
+
+    //Other
+    neighboursMap[BuildingE.RCH] = listOf(BuildingE.DWE, BuildingE.E2)
     neighboursMap[BuildingE.SLC] = listOf(BuildingE.PAC, BuildingE.MC)
     neighboursMap[BuildingE.PAC] = listOf(BuildingE.SLC)
 
     // Initialize buildings and add neighbors
-    for (key in BuildingE.values()) {
+    for (key in BuildingE.entries) {
         val instance = Buildings(key.building)
         listOfBuildings[key.building] = instance
         val neighbours = neighboursMap[key] ?: emptyList()
