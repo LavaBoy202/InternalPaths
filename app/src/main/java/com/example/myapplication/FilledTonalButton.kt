@@ -39,7 +39,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
     var buttonText by remember { mutableStateOf("Submit") }
-    var isVisible by remember { mutableStateOf(false) } 
+    var isVisible by remember { mutableStateOf(false) }
     var pathExists by remember { mutableStateOf(false) }
     var showDialog by remember { mutableStateOf(false) }
     var showInstructionsSheet by remember { mutableStateOf(false) }
