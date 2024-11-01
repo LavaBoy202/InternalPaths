@@ -2,6 +2,8 @@ package com.example.myapplication
 
 import android.os.Build
 import android.util.Log
+import java.util.LinkedList
+import java.util.Queue
 
 class Buildings(val name: String) {
     var neighbourBuildings:MutableList<Buildings> = mutableListOf()
@@ -59,10 +61,6 @@ fun initBuildings(): Map<String, Buildings> {
     neighboursMap[BuildingE.M3] = listOf(BuildingE.MC, BuildingE.DC)
     neighboursMap[BuildingE.MC] = listOf(BuildingE.QNC, BuildingE.DC, BuildingE.PAC, BuildingE.M3, BuildingE.PAC, BuildingE.C2, BuildingE.SLC)
 
-
-
-
-
     //Engineering Buildings
     neighboursMap[BuildingE.E3] = listOf(BuildingE.DC, BuildingE.E5, BuildingE.E2)
     neighboursMap[BuildingE.E2] = listOf(BuildingE.RCH, BuildingE.PHY, BuildingE.DWE, BuildingE.E3, BuildingE.CPH)
@@ -116,30 +114,59 @@ fun initBuildings(): Map<String, Buildings> {
     return listOfBuildings
 }
 fun PathExists(start: String, end: String, buildings: Map<String, Buildings>): Boolean {
-    val visited = mutableSetOf<String>()
     val startBuilding = buildings[start] ?: return false
     val endBuilding = buildings[end] ?: return false
     //val buildings2 = initBuildings()
-    return dfs(startBuilding, endBuilding, buildings, visited)
+    return bfs(startBuilding, endBuilding, buildings)
 }
 
-fun dfs(current: Buildings, endBuilding: Buildings, buildings: Map<String, Buildings>, visited: MutableSet<String>): Boolean {
-    println("Visiting ${current.name}")
-    println("Neighboring buildings of ${current.name}: ${current.neighbourBuildings.map { it.name }}")
-    visited.add(current.name)
-    if (current == endBuilding) {
-        return true
-    }
-    val neighbors = current.neighbourBuildings.mapNotNull { buildings[it.name] }
-    for (neighbor in neighbors) {
-        if (!visited.contains(neighbor.name)) {
-            if (dfs(neighbor, endBuilding, buildings, visited)) {
-                return true
+fun bfs(start: Buildings, endBuilding: Buildings, buildings: Map<String, Buildings>): Boolean {
+    val visited = mutableSetOf<String>()
+    val queue: Queue<Buildings> = LinkedList()
+    val predecessors = mutableMapOf<String, String?>()
+
+
+    queue.add(start)
+    visited.add(start.name)
+    predecessors[start.name] = null
+
+    while (queue.isNotEmpty()) {
+        val current = queue.poll()
+        println("Visiting ${current.name}")
+        println("Neighboring buildings of ${current.name}: ${current.neighbourBuildings.map { it.name }}")
+
+
+        if (current == endBuilding) {
+            printPath(start.name, endBuilding.name, predecessors)
+            return true
+        }
+
+
+        val neighbors = current.neighbourBuildings.mapNotNull { buildings[it.name] }
+        for (neighbor in neighbors) {
+            if (!visited.contains(neighbor.name)) {
+                queue.add(neighbor)
+                visited.add(neighbor.name)
+                predecessors[neighbor.name] = current.name 
             }
         }
     }
 
-    // If no path is found from this building, remove from vistied array
-    visited.remove(current.name)
+
+    println("No path found from ${start.name} to ${endBuilding.name}")
     return false
+}
+
+fun printPath(start: String, end: String, predecessors: Map<String, String?>) {
+    val path = mutableListOf<String>()
+    var current: String? = end
+
+
+    while (current != null) {
+        path.add(current)
+        current = predecessors[current]
+    }
+
+    path.reverse()
+    println("Path from $start to $end: ${path.joinToString(" -> ")}")
 }
