@@ -19,7 +19,6 @@ fun IntroductionScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black),
-        horizontalAlignment = Alignment.CenterHorizontally,
 
 
     ) {
@@ -39,11 +38,11 @@ fun IntroductionScreen(navController: NavController) {
         // Title Text
         Text(
             text = "Navigate Paths Between Buildings".uppercase(),
-            fontSize = 32.sp,
+            fontSize = 48.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFFFFD166),
-            modifier = Modifier.padding(horizontal = 16.dp),
-            lineHeight = 40.sp
+            modifier = Modifier.fillMaxWidth(0.75f).padding(horizontal = 20.dp),
+            lineHeight = 52.sp
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -52,17 +51,18 @@ fun IntroductionScreen(navController: NavController) {
         Text(
             text = "Discover internal paths between buildings to avoid the cold or rain. Select your starting building and where you want to go. ",
             fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
             color = Color.White,
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier.padding(horizontal = 20.dp)
         )
         FilledTonalButton(
             onClick = { navController.navigate("QuickCheckScreen") },
             colors = ButtonDefaults.filledTonalButtonColors(
                 containerColor = Color(0xFFFFD166),  // Set the background color to yellow
                 contentColor = Color.Black     // Set the text color to yellow
-            )
+            ), modifier = Modifier.padding(top = 24.dp).align(Alignment.CenterHorizontally),
         ) {
-            Text( text = "Get Started",  fontSize = 24.sp)
+            Text( text = "Get Started", fontWeight = FontWeight.Bold, fontSize = 24.sp, modifier = Modifier.padding(6.dp))
         }
     }
 }
