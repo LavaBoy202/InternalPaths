@@ -14,8 +14,8 @@ class PathViewModel : ViewModel() {
     private val _endBuilding = MutableLiveData<String>()
     val endBuilding: LiveData<String> get() = _endBuilding
 
-    private val _path = MutableLiveData<List<String>>()
-    val path: LiveData<List<String>> get() = _path
+    private val _path = MutableLiveData<List<Pair<String, String>>>()
+    val path: LiveData<List<Pair<String, String>>> get() = _path
 
     private val _pathExists = MutableLiveData<Boolean>()
     val pathExists: LiveData<Boolean> get() = _pathExists
@@ -39,7 +39,7 @@ class PathViewModel : ViewModel() {
 
         val startBuilding = buildings[start]!!
         val endBuilding = buildings[end]!!
-        val predecessors = mutableMapOf<String, String?>()
+        val predecessors = mutableMapOf<String, Pair<String, String?>?>()
 
         if (bfs(startBuilding, endBuilding, buildings, predecessors)) {
             _pathExists.value = true
@@ -54,7 +54,7 @@ class PathViewModel : ViewModel() {
         start: Buildings,
         endBuilding: Buildings,
         buildings: Map<String, Buildings>,
-        predecessors: MutableMap<String, String?>
+        predecessors: MutableMap<String, Pair<String, String?>?>
     ): Boolean {
         val visited = mutableSetOf<String>()
         val queue: Queue<Buildings> = LinkedList()
@@ -71,22 +71,30 @@ class PathViewModel : ViewModel() {
                 if (!visited.contains(neighbor.name)) {
                     queue.add(neighbor)
                     visited.add(neighbor.name)
-                    predecessors[neighbor.name] = current.name
+                    // Store the direction alongside the building name
+                    predecessors[neighbor.name] = Pair(current.name, current.getDirection(neighbor.name))
                 }
             }
         }
         return false
     }
 
-    private fun constructPath(start: String, end: String, predecessors: Map<String, String?>): List<String> {
-        val path = mutableListOf<String>()
-        var current: String? = end
+    private fun constructPath(
+        start: String,
+        end: String,
+        predecessors: Map<String, Pair<String, String?>?>
+    ): List<Pair<String, String>> {
+        val path = mutableListOf<Pair<String, String>>()
+        var current: Pair<String, String?>? = Pair(end, "You arrived at ${end}")
+
         while (current != null) {
-            path.add(current)
-            current = predecessors[current]
+            // Add to path, converting nullable second part of Pair to non-nullable with empty string fallback
+            path.add(Pair(current.first, current.second ?: ""))
+            current = predecessors[current.first]
         }
+
         path.reverse()
-        println("Path from $start to $end: ${path.joinToString(" -> ")}")
+        println("Path from $start to $end: ${path.joinToString(" -> ") { "(${it.first}, ${it.second})" }}")
         return path
     }
 }
