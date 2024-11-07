@@ -52,11 +52,12 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun QuickCheckScreen(navController: NavController, viewModel: PathViewModel) {
-    SimpleNavBarScaffold(navController, "Quick Check") { QuickCheckScreenContent(navController, viewModel, it) }
+    //SimpleNavBarScaffold(navController, "Quick Check") {
+    QuickCheckScreenContent(navController, viewModel)
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun QuickCheckScreenContent(navController: NavController, viewModel: PathViewModel, innerPadding: PaddingValues) {
+fun QuickCheckScreenContent(navController: NavController, viewModel: PathViewModel) {
     // Variables to hold selected building names
     var selectedText by remember { mutableStateOf("") }
     var selectedText2 by remember { mutableStateOf("") }
@@ -66,7 +67,6 @@ fun QuickCheckScreenContent(navController: NavController, viewModel: PathViewMod
 
     Surface(modifier = Modifier.fillMaxSize(), color = Color.Black) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
@@ -117,8 +117,6 @@ fun QuickCheckScreenContent(navController: NavController, viewModel: PathViewMod
                 }
                 Spacer(modifier = Modifier.height(20.dp))
                 FilledTonalButtonExample(selectedText, selectedText2, navController, viewModel )
-                AnimatedVisibility(visible) {
-                }
             }
         }
     }

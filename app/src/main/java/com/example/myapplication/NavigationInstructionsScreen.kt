@@ -1,5 +1,6 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -56,86 +57,95 @@ fun NavigationInstructionsScreen(navController: NavController, viewModel: PathVi
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .shadow(10.dp, RoundedCornerShape(20.dp)),
+                    .height(400.dp)
+                    .shadow(100.dp, RoundedCornerShape(20.dp)), // Shadow added to the card
                 colors = CardDefaults.cardColors(containerColor = Color(0xFFFFD166))
             ) {
-                Column(
-                    modifier = Modifier.padding(24.dp),
-                    horizontalAlignment = Alignment.Start
+                LazyColumn(
+                    modifier = Modifier
+                        .padding(24.dp) // Padding for the LazyColumn
+                        .fillMaxWidth()
                 ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowForward,
-                            contentDescription = "Start your path here",
-                            modifier = Modifier.size(40.dp),
-                            tint = Color.Black
-                        )
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Text(
-                            text = "Start your path here",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        )
-                    }
-
-                    // Loop through the instructions
-                    instructions.value.forEach { (building, instruction) ->
+                    item {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(50.dp)
-                                    .background(Color.Gray, shape = CircleShape)
-                                    .align(Alignment.CenterVertically),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = BuildingE.reverseLookup[building].toString(),
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = Color.White
-                                )
-                            }
+                            Icon(
+                                imageVector = Icons.Default.ArrowForward,
+                                contentDescription = "Start your path here",
+                                modifier = Modifier.size(40.dp),
+                                tint = Color.Black
+                            )
                             Spacer(modifier = Modifier.width(12.dp))
                             Text(
-                                text = instruction,
+                                text = "Start your path here",
                                 fontSize = 18.sp,
-                                fontWeight = FontWeight.Medium,
-                                color = Color.Black,
-                                textAlign = TextAlign.Start,
-                                lineHeight = 26.sp
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black
                             )
                         }
                     }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.CheckCircle,
-                            contentDescription = "You reached your destination",
-                            modifier = Modifier.size(40.dp),
-                            tint = Color.Black
-                        )
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Text(
-                            text = "You reached your destination",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        )
+
+                    // Loop through the instructions
+                    instructions.value.forEach { (building, instruction) ->
+                        item {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(50.dp)
+                                        .background(Color.Gray, shape = CircleShape)
+                                        .align(Alignment.CenterVertically),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = BuildingE.reverseLookup[building].toString(),
+                                        fontSize = 18.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color.White
+                                    )
+                                }
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Text(
+                                    text = instruction,
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Medium,
+                                    color = Color.Black,
+                                    textAlign = TextAlign.Start,
+                                    lineHeight = 26.sp
+                                )
+                            }
+                        }
+                    }
+
+                    item {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.CheckCircle,
+                                contentDescription = "You reached your destination",
+                                modifier = Modifier.size(40.dp),
+                                tint = Color.Black
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = "You reached your destination",
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black
+                            )
+                        }
                     }
                 }
             }
