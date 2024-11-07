@@ -55,7 +55,12 @@ enum class BuildingE(val building: String) {
     TC("William M. Tatham Centre for Co-operative Education & Career Action (TC)"),
     C2("Chemistry 2 (C2)"),
     CIF("Columbia Icefield (CIF)"),
-    CPH("Carl A. Pollock Hall (CPH)"),
+    CPH("Carl A. Pollock Hall (CPH)");
+
+    companion object {
+        // Reversing the enum: mapping building name to enum constant
+        val reverseLookup: Map<String, BuildingE> = values().associateBy { it.building }
+    }
 }
 fun initBuildings(): Map<String, Buildings> {
     val listOfBuildings = mutableMapOf<String, Buildings>()

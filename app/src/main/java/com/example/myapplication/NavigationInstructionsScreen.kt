@@ -1,5 +1,6 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
@@ -19,6 +20,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.NavController
+import com.example.myapplication.BuildingE
 import com.example.myapplication.PathViewModel
 
 @Composable
@@ -60,19 +62,27 @@ fun NavigationInstructionsScreen(navController: NavController, viewModel: PathVi
                     modifier = Modifier.padding(24.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    instructions.value.forEach { (instruction, icon) ->
+                    instructions.value.forEach { (building, instruction) ->
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.LocationOn,
-                                contentDescription = null,
-                                modifier = Modifier.size(24.dp),
-                                tint = Color.Black
-                            )
+                            Box(
+                                modifier = Modifier
+                                    .size(50.dp)
+                                    .background(Color.Gray, shape = CircleShape)
+                                    .align(Alignment.CenterVertically),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = BuildingE.reverseLookup[building].toString(),
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.White
+                                )
+                            }
                             Spacer(modifier = Modifier.width(12.dp))
                             Text(
                                 text = instruction,
