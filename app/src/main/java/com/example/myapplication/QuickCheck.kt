@@ -60,6 +60,7 @@ fun QuickCheckScreenContent(navController: NavController, innerPadding: PaddingV
     // Variables to hold selected building names
     var selectedText by remember { mutableStateOf("") }
     var selectedText2 by remember { mutableStateOf("") }
+    val viewModel = PathViewModel()
     var visible by remember {
         mutableStateOf(true)
     }
@@ -116,7 +117,7 @@ fun QuickCheckScreenContent(navController: NavController, innerPadding: PaddingV
                     selectedText2 = text
                 }
                 Spacer(modifier = Modifier.height(20.dp))
-                FilledTonalButtonExample(selectedText, selectedText2)
+                FilledTonalButtonExample(selectedText, selectedText2, navController, viewModel )
                 AnimatedVisibility(visible) {
                 }
             }

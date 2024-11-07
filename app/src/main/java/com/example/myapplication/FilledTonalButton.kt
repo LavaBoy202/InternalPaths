@@ -21,6 +21,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -33,18 +34,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
-    var buttonText by remember { mutableStateOf("Submit") }
+fun FilledTonalButtonExample(selectedText: String, selectedText2: String, navController: NavController, viewModel: PathViewModel) {
+    var buttonText by remember { mutableStateOf("Search") }
     var isVisible by remember { mutableStateOf(false) }
-    var pathExists by remember { mutableStateOf(false) }
     var showDialog by remember { mutableStateOf(false) }
     var showInstructionsSheet by remember { mutableStateOf(false) }
 
-    val coroutineScope = rememberCoroutineScope()
+    //LiveData Observing
+    val pathExists by viewModel.pathExists.observeAsState(initial = false)
+    val path by viewModel.path.observeAsState(initial = emptyList())
+
 
     Column(
         modifier = Modifier
@@ -60,29 +65,14 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
         }
         FilledTonalButton(
             onClick = {
-                val buildings = initBuildings()
-                val start = selectedText
-                val end = selectedText2
-                pathExists = PathExists(start, end, buildings)
-                buttonText = "SEARCH"
+                viewModel.setStartBuilding(selectedText)
+                viewModel.setEndBuilding(selectedText2)
+                viewModel.findPath(initBuildings())
                 isVisible = true
             },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD166), contentColor = Color.Black)
         ) {
             Text(text = buttonText, fontWeight = FontWeight.Bold)
-        }
-
-        AnimatedVisibility(visible = isVisible && pathExists == true) {
-            Text(modifier = Modifier.padding(10.dp),text = "Found a Path!", color = Color(0xFF2C6E49), fontWeight = FontWeight.Bold, fontSize = 32.sp)
-        }
-        AnimatedVisibility(visible = isVisible && pathExists == false && selectedText != "" && selectedText2 != "") {
-            Text(modifier = Modifier.padding(10.dp), text = "No Path Found :(", color = Color(0xFFAE3C3C), fontWeight = FontWeight.Bold, fontSize = 32.sp)
-        }
-        AnimatedVisibility(visible = isVisible && selectedText == "") {
-            Text(modifier = Modifier.padding(10.dp), text = "Please Select Start Building", color = Color(0xFFAE3C3C), fontWeight = FontWeight.Bold, fontSize = 28.sp)
-        }
-        AnimatedVisibility(visible = isVisible && selectedText2 == "") {
-            Text(modifier = Modifier.padding(10.dp), text = "Please Select End Building", color = Color(0xFFAE3C3C), fontWeight = FontWeight.Bold, fontSize = 28.sp)
         }
         if (showDialog) {
             AlertDialog(
@@ -122,7 +112,7 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
                             showDialog = false
                             if (pathExists) {
                                 showInstructionsSheet = true
-//                                coroutineScope.launch { bottomSheetState.show() }
+                                navController.navigate("NavigationInstructionsScreen")
                             }
                         }
                     ) {
@@ -136,12 +126,5 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String) {
                 }
             )
         }
-//        Image(
-//            painter = painterResource(id = R.drawable.goose),
-//            contentDescription = "GOOSE",
-//            modifier = Modifier
-//                .size(150.dp)
-//                .padding(18.dp, 0.dp, 0.dp, 10.dp)
-//        )
     }
 }

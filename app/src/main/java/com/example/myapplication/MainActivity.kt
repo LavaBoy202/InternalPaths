@@ -2,6 +2,7 @@
 
 package com.example.myapplication
 import InternalPathsApp
+import NavigationInstructionsScreen
 import com.example.myapplication.Buildings
 
 import android.os.Bundle
