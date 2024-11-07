@@ -21,6 +21,9 @@ fun InternalPathsApp() {
         composable("IntroductionScreen") {
             IntroductionScreen(navController = navController)
         }
+        composable("NavigationInstructionsScreen"){
+            NavigationInstructionsScreen(navController = navController)
+        }
 
     }
 }
