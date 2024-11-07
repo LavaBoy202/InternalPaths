@@ -6,6 +6,7 @@ import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.runtime.*
@@ -62,6 +63,28 @@ fun NavigationInstructionsScreen(navController: NavController, viewModel: PathVi
                     modifier = Modifier.padding(24.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowForward,
+                            contentDescription = "Start your path here",
+                            modifier = Modifier.size(40.dp),
+                            tint = Color.Black
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Text(
+                            text = "Start your path here",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
+                    }
+
+                    // Loop through the instructions
                     instructions.value.forEach { (building, instruction) ->
                         Row(
                             modifier = Modifier
@@ -93,6 +116,26 @@ fun NavigationInstructionsScreen(navController: NavController, viewModel: PathVi
                                 lineHeight = 26.sp
                             )
                         }
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.CheckCircle,
+                            contentDescription = "You reached your destination",
+                            modifier = Modifier.size(40.dp),
+                            tint = Color.Black
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Text(
+                            text = "You reached your destination",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
                     }
                 }
             }
