@@ -6,12 +6,14 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.CampusMapScreen
 import com.example.myapplication.IntroductionScreen
 import com.example.myapplication.QuickCheckScreen
+import com.example.myapplication.SplashScreen
 
 
 @Composable
 fun InternalPathsApp() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "IntroductionScreen") {
+    NavHost(navController = navController, startDestination = "SplashScreen") {
+        composable("SplashScreen") { SplashScreen(navController) }
         composable("QuickCheckScreen") {
             QuickCheckScreen(navController = navController)
         }
