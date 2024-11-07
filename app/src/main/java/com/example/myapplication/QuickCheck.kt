@@ -51,16 +51,15 @@ import kotlinx.coroutines.delay
 
 
 @Composable
-fun QuickCheckScreen(navController: NavController) {
-    SimpleNavBarScaffold(navController, "Quick Check") { QuickCheckScreenContent(navController, it) }
+fun QuickCheckScreen(navController: NavController, viewModel: PathViewModel) {
+    SimpleNavBarScaffold(navController, "Quick Check") { QuickCheckScreenContent(navController, viewModel, it) }
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun QuickCheckScreenContent(navController: NavController, innerPadding: PaddingValues) {
+fun QuickCheckScreenContent(navController: NavController, viewModel: PathViewModel, innerPadding: PaddingValues) {
     // Variables to hold selected building names
     var selectedText by remember { mutableStateOf("") }
     var selectedText2 by remember { mutableStateOf("") }
-    val viewModel = PathViewModel()
     var visible by remember {
         mutableStateOf(true)
     }
