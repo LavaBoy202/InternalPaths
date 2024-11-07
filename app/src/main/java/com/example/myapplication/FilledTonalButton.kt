@@ -41,8 +41,6 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun FilledTonalButtonExample(selectedText: String, selectedText2: String, navController: NavController, viewModel: PathViewModel) {
-    var buttonText by remember { mutableStateOf("Search") }
-    var isVisible by remember { mutableStateOf(false) }
     var showDialog by remember { mutableStateOf(false) }
     var showInstructionsSheet by remember { mutableStateOf(false) }
 
@@ -57,22 +55,16 @@ fun FilledTonalButtonExample(selectedText: String, selectedText2: String, navCon
             .fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        LaunchedEffect(isVisible) {
-            if (isVisible) {
-                isVisible = false
-                showDialog = true
-            }
-        }
         FilledTonalButton(
             onClick = {
                 viewModel.setStartBuilding(selectedText)
                 viewModel.setEndBuilding(selectedText2)
                 viewModel.findPath(initBuildings())
-                isVisible = true
+                showDialog = true
             },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD166), contentColor = Color.Black)
         ) {
-            Text(text = buttonText, fontWeight = FontWeight.Bold)
+            Text(text = "Search", fontWeight = FontWeight.Bold)
         }
         if (showDialog) {
             AlertDialog(
