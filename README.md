@@ -19,5 +19,5 @@ Here's the link to the document the University of Watelroo provided for their ca
 ![Screenshot 2024-11-08 at 12 25 18 AM](https://github.com/user-attachments/assets/9f353bed-5d8b-4008-b948-efaf0bc2a380)
 
 #Demo
+* [Internal Paths Demo Video]([https://uwaterloo.ca/healthy-workplace/sites/ca.healthy-workplace/files/uploads/files/uwaterloo_indoor_walking_routes_1.pdf](https://www.youtube.com/watch?v=ZAW7IIX3AY8))
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ZAW7IIX3AY8?si=w1X8Ef6hl6LOcjsJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
