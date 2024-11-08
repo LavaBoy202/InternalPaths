@@ -10,5 +10,14 @@ I recently discovered that the University of Waterloo has many internal paths to
 Here's the link to the document the University of Watelroo provided for their campus indoor walking routes
 * [UWaterloo Indoor Walking Routes](https://uwaterloo.ca/healthy-workplace/sites/ca.healthy-workplace/files/uploads/files/uwaterloo_indoor_walking_routes_1.pdf)
 
-![Screenshot 2024-04-10 at 2 19 03 PM](https://github.com/LavaBoy202/InternalPaths/assets/79107199/38491895-4522-4dcb-8ea5-9547a4c4ecbd)
-![Screenshot 2024-04-10 at 2 18 42 PM](https://github.com/LavaBoy202/InternalPaths/assets/79107199/86333d06-a234-4c2a-80a4-9683ad2da502)
+# Screenshots
+![Screenshot 2024-11-08 at 12 23 57 AM](https://github.com/user-attachments/assets/2ae0a896-3e6e-4a01-99eb-853817ff0091)
+![Screenshot 2024-11-08 at 12 24 22 AM](https://github.com/user-attachments/assets/98457ea3-b862-4889-8f47-b95385a6c726)
+![Screenshot 2024-11-08 at 12 24 36 AM](https://github.com/user-attachments/assets/6a087670-7229-4c79-9303-8df675b168ec)
+![Screenshot 2024-11-08 at 12 24 56 AM](https://github.com/user-attachments/assets/bd6d396f-3e3b-45de-b9a1-950047bbbf1f)
+![Screenshot 2024-11-08 at 12 25 05 AM](https://github.com/user-attachments/assets/b641f8dc-e51d-481a-bad6-a24807d5913e)
+![Screenshot 2024-11-08 at 12 25 18 AM](https://github.com/user-attachments/assets/9f353bed-5d8b-4008-b948-efaf0bc2a380)
+
+#Demo
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZAW7IIX3AY8?si=w1X8Ef6hl6LOcjsJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
