@@ -3,9 +3,10 @@
 
 
 ## Description
-I recently discovered that the University of Waterloo has many internal paths to builidngs all over their campus to keep their students warm.
-<br>These paths range from builing to building, go underground, and can be difficult for students to navigate.
-<br>InternalPaths provides students with a guide to help find their way around campus while taking advantage of indoor walking routes!
+
+The University of Waterloo has a unique network of indoor pathways and underground tunnels linking buildings across campus—perfect for staying warm in winter! But navigating this maze of corridors can be confusing.
+
+Enter InternalPaths! This essential guide helps students find their way across campus without stepping outside. With InternalPaths, students can skip the cold, save time, and discover the best indoor routes to get from class to class. Embrace warmth, avoid the weather, and make campus feel a little more connected!
 
 ## Acknowledgments
 Here's the link to the document the University of Watelroo provided for their campus indoor walking routes
