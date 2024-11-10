@@ -67,22 +67,22 @@ fun initBuildings(): Map<String, Buildings> {
     val neighboursMap = mutableMapOf<BuildingE, List<Pair<BuildingE, String>>>()
 
     //Math Buildings
-    neighboursMap[BuildingE.DC] = listOf(BuildingE.MC to "Go to 2nd floor", BuildingE.M3 to "Go to the 3rd floor", BuildingE.EIT to "Go to 2nd Floor", BuildingE.E3 to "Go to to 2nd floor")
+    neighboursMap[BuildingE.DC] = listOf(BuildingE.MC to "Go to the second or third floor and there will be a bridge to MC", BuildingE.M3 to "Go to the second floor and there will be a bridge to MC", BuildingE.EIT to "Go to the second floor and there will be a bridge to EIT", BuildingE.E3 to "Go to the second floor and there will be a bridge to MC")
     neighboursMap[BuildingE.M3] = listOf(BuildingE.MC to "", BuildingE.DC to "")
-    neighboursMap[BuildingE.MC] = listOf(BuildingE.QNC to "HRLLLLLOOO", BuildingE.DC to "", BuildingE.PAC to "", BuildingE.M3 to "", BuildingE.PAC to "", BuildingE.C2 to "", BuildingE.SLC to "")
+    neighboursMap[BuildingE.MC] = listOf(BuildingE.QNC to "Go to the third floor and there will be a bridge to QNC", BuildingE.DC to "Go to the third or fourth floor and there will be a bridge to MC", BuildingE.PAC to "On this floor, there will signs that direct you to PAC. Follow them and take the bridge across.", BuildingE.M3 to "Go to the third floor and there will be a bridge to M3", BuildingE.C2 to "", BuildingE.SLC to "Go to the third floor there will be a bridge to SLC")
 
 // Engineering Buildings
-    neighboursMap[BuildingE.E3] = listOf(BuildingE.DC to "", BuildingE.E5 to "", BuildingE.E2 to "")
+    neighboursMap[BuildingE.E3] = listOf(BuildingE.DC to "Go down a floor on the staircase and enter the hallway connecting to Davis Center.", BuildingE.E5 to "", BuildingE.E2 to "")
     neighboursMap[BuildingE.E2] = listOf(BuildingE.RCH to "", BuildingE.PHY to "", BuildingE.DWE to "", BuildingE.E3 to "", BuildingE.CPH to "")
-    neighboursMap[BuildingE.E5] = listOf(BuildingE.E3 to "", BuildingE.E7 to "")
+    neighboursMap[BuildingE.E5] = listOf(BuildingE.E3 to "Staying on this floor, take the bridge to E3", BuildingE.E7 to "")
     neighboursMap[BuildingE.E6] = listOf(BuildingE.E7 to "")
-    neighboursMap[BuildingE.E7] = listOf(BuildingE.E6 to "", BuildingE.E5 to "")
+    neighboursMap[BuildingE.E7] = listOf(BuildingE.E6 to "", BuildingE.E5 to "Go to the third floor of this building")
     neighboursMap[BuildingE.EIT] = listOf(BuildingE.DC to "", BuildingE.ESC to "", BuildingE.PHY to "")
     neighboursMap[BuildingE.QNC] = listOf(BuildingE.B2 to "", BuildingE.MC to "")
     neighboursMap[BuildingE.DWE] = listOf(BuildingE.E2 to "", BuildingE.RCH to "")
 
 // Core Sciences Buildings
-    neighboursMap[BuildingE.B2] = listOf(BuildingE.STC to "", BuildingE.B1 to "", BuildingE.QNC to "")
+    neighboursMap[BuildingE.B2] = listOf(BuildingE.STC to "There will be a hallway on the first or second floor that connects to STC", BuildingE.B1 to "", BuildingE.QNC to "")
     neighboursMap[BuildingE.B1] = listOf(BuildingE.ESC to "", BuildingE.B2 to "")
     neighboursMap[BuildingE.ESC] = listOf(BuildingE.EIT to "", BuildingE.B1 to "", BuildingE.C2 to "")
     neighboursMap[BuildingE.PHY] = listOf(BuildingE.E2 to "", BuildingE.EIT to "")
@@ -109,8 +109,8 @@ fun initBuildings(): Map<String, Buildings> {
 
 // Other
     neighboursMap[BuildingE.RCH] = listOf(BuildingE.DWE to "", BuildingE.E2 to "")
-    neighboursMap[BuildingE.SLC] = listOf(BuildingE.PAC to "", BuildingE.MC to "")
-    neighboursMap[BuildingE.PAC] = listOf(BuildingE.SLC to "")
+    neighboursMap[BuildingE.SLC] = listOf(BuildingE.PAC to "Find the Subway or Jugo Juice, PAC will be there", BuildingE.MC to "")
+    neighboursMap[BuildingE.PAC] = listOf(BuildingE.SLC to "Walk towards the food court to get to SLC")
 
     // Initialize buildings and add neighbors
     for (key in BuildingE.entries) {

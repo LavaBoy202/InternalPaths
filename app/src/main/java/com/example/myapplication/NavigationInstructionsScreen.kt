@@ -66,6 +66,7 @@ fun NavigationInstructionsScreen(navController: NavController, viewModel: PathVi
                         .padding(24.dp) // Padding for the LazyColumn
                         .fillMaxWidth()
                 ) {
+                    // Start item
                     item {
                         Row(
                             modifier = Modifier
@@ -74,7 +75,7 @@ fun NavigationInstructionsScreen(navController: NavController, viewModel: PathVi
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(
-                                imageVector = Icons.Default.ArrowForward,
+                                imageVector = Icons.Default.LocationOn,
                                 contentDescription = "Start your path here",
                                 modifier = Modifier.size(40.dp),
                                 tint = Color.Black
@@ -82,14 +83,15 @@ fun NavigationInstructionsScreen(navController: NavController, viewModel: PathVi
                             Spacer(modifier = Modifier.width(12.dp))
                             Text(
                                 text = "Start your path here",
-                                fontSize = 18.sp,
+                                fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Black
                             )
                         }
+                        Divider(color = Color.Gray, thickness = 1.dp) // Divider after start item
                     }
 
-                    // Loop through the instructions
+                    // Loop through the instructions with dividers
                     instructions.value.forEach { (building, instruction) ->
                         item {
                             Row(
@@ -107,7 +109,7 @@ fun NavigationInstructionsScreen(navController: NavController, viewModel: PathVi
                                 ) {
                                     Text(
                                         text = BuildingE.reverseLookup[building].toString(),
-                                        fontSize = 18.sp,
+                                        fontSize = 16.sp,
                                         fontWeight = FontWeight.Bold,
                                         color = Color.White
                                     )
@@ -115,16 +117,18 @@ fun NavigationInstructionsScreen(navController: NavController, viewModel: PathVi
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Text(
                                     text = instruction,
-                                    fontSize = 18.sp,
+                                    fontSize = 16.sp,
                                     fontWeight = FontWeight.Medium,
                                     color = Color.Black,
                                     textAlign = TextAlign.Start,
                                     lineHeight = 26.sp
                                 )
                             }
+                            Divider(color = Color.Gray, thickness = 1.dp) // Divider after each instruction item
                         }
                     }
 
+                    // Destination item
                     item {
                         Row(
                             modifier = Modifier
@@ -141,7 +145,7 @@ fun NavigationInstructionsScreen(navController: NavController, viewModel: PathVi
                             Spacer(modifier = Modifier.width(12.dp))
                             Text(
                                 text = "You reached your destination",
-                                fontSize = 18.sp,
+                                fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Black
                             )
