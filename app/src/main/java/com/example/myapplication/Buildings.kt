@@ -67,26 +67,26 @@ fun initBuildings(): Map<String, Buildings> {
     val neighboursMap = mutableMapOf<BuildingE, List<Pair<BuildingE, String>>>()
 
     //Math Buildings
-    neighboursMap[BuildingE.DC] = listOf(BuildingE.MC to "Go to the second or third floor and there will be a bridge to MC", BuildingE.M3 to "Go to the second floor and there will be a bridge to MC", BuildingE.EIT to "Go to the second floor and there will be a bridge to EIT", BuildingE.E3 to "Go to the second floor and there will be a bridge to MC")
+    neighboursMap[BuildingE.DC] = listOf(BuildingE.MC to "Go to the second or third floor and there will be a bridge to MC", BuildingE.M3 to "Go to the second floor and there will be a bridge to MC", BuildingE.EIT to "Go to the second floor and there will be a bridge to EIT", BuildingE.E3 to "Go to the second floor and there will be a bridge to MC", BuildingE.C2 to "Go to the second floor and find bridge connecting to C2")
     neighboursMap[BuildingE.M3] = listOf(BuildingE.MC to "", BuildingE.DC to "")
-    neighboursMap[BuildingE.MC] = listOf(BuildingE.QNC to "Go to the third floor and there will be a bridge to QNC", BuildingE.DC to "Go to the third or fourth floor and there will be a bridge to MC", BuildingE.PAC to "On this floor, there will signs that direct you to PAC. Follow them and take the bridge across.", BuildingE.M3 to "Go to the third floor and there will be a bridge to M3", BuildingE.C2 to "", BuildingE.SLC to "Go to the third floor there will be a bridge to SLC")
+    neighboursMap[BuildingE.MC] = listOf(BuildingE.QNC to "Go to the third floor and there will be a bridge to QNC", BuildingE.DC to "Go to the third or fourth floor and there will be a bridge to MC", BuildingE.PAC to "On this floor, there will signs that direct you to PAC. Follow them and take the bridge across.", BuildingE.M3 to "Go to the third floor and there will be a bridge to M3", BuildingE.C2 to "On the first floor find 1082. This will take you to an underground tunnel to C2", BuildingE.SLC to "Go to the third floor there will be a bridge to SLC")
 
 // Engineering Buildings
-    neighboursMap[BuildingE.E3] = listOf(BuildingE.DC to "Go down a floor on the staircase and enter the hallway connecting to Davis Center.", BuildingE.E5 to "", BuildingE.E2 to "")
-    neighboursMap[BuildingE.E2] = listOf(BuildingE.RCH to "", BuildingE.PHY to "", BuildingE.DWE to "", BuildingE.E3 to "", BuildingE.CPH to "")
+    neighboursMap[BuildingE.E3] = listOf(BuildingE.DC to "Go down a floor on the staircase and enter the hallway connecting to Davis Center.", BuildingE.E5 to " Go to the 3rd floor and you will find the bridge connecting to E5", BuildingE.E2 to "Go to the second floor of the building and you will find a path connecting to E2.")
+    neighboursMap[BuildingE.E2] = listOf(BuildingE.RCH to "On the first floor find 1736, go down the stairs and follow the path to RCH", BuildingE.PHY to "There is a bridge on the 3rd floor connecting to Physics", BuildingE.DWE to "There is a pathway way to DWE on the first floor", BuildingE.E3 to "On the second floor of the building there is a pathway connecting to E3", BuildingE.CPH to "Go to the first floor and follow the pathway to CPH")
     neighboursMap[BuildingE.E5] = listOf(BuildingE.E3 to "Staying on this floor, take the bridge to E3", BuildingE.E7 to "")
     neighboursMap[BuildingE.E6] = listOf(BuildingE.E7 to "")
     neighboursMap[BuildingE.E7] = listOf(BuildingE.E6 to "", BuildingE.E5 to "Go to the third floor of this building")
-    neighboursMap[BuildingE.EIT] = listOf(BuildingE.DC to "", BuildingE.ESC to "", BuildingE.PHY to "")
+    neighboursMap[BuildingE.EIT] = listOf(BuildingE.DC to "Go to the third floor and you will find the bridge connection to DC", BuildingE.ESC to "Go to the third floor cross the bridge to ESC abd take the stairs down to the first floor.", BuildingE.PHY to "On the first floor there is a pathway that will take you to Physics.")
     neighboursMap[BuildingE.QNC] = listOf(BuildingE.B2 to "", BuildingE.MC to "")
-    neighboursMap[BuildingE.DWE] = listOf(BuildingE.E2 to "", BuildingE.RCH to "")
+    neighboursMap[BuildingE.DWE] = listOf(BuildingE.E2 to "On the first floor there is a pathway connecting to E2", BuildingE.RCH to "On the first floor there is pathway to RCH and then take the stair down.")
 
 // Core Sciences Buildings
     neighboursMap[BuildingE.B2] = listOf(BuildingE.STC to "There will be a hallway on the first or second floor that connects to STC", BuildingE.B1 to "", BuildingE.QNC to "")
     neighboursMap[BuildingE.B1] = listOf(BuildingE.ESC to "", BuildingE.B2 to "")
-    neighboursMap[BuildingE.ESC] = listOf(BuildingE.EIT to "", BuildingE.B1 to "", BuildingE.C2 to "")
-    neighboursMap[BuildingE.PHY] = listOf(BuildingE.E2 to "", BuildingE.EIT to "")
-    neighboursMap[BuildingE.C2] = listOf(BuildingE.MC to "", BuildingE.ESC to "", BuildingE.DC to "")
+    neighboursMap[BuildingE.ESC] = listOf(BuildingE.EIT to "Go to the third floor and take the connecting bridge to EIT", BuildingE.B1 to "Go to the second floor and will find a path connecting to B1", BuildingE.C2 to "Go to second floor and take the bridge connecting to C2")
+    neighboursMap[BuildingE.PHY] = listOf(BuildingE.E2 to "Take the pathway to E2 on the first floor", BuildingE.EIT to "Go to the first floor and go down the hallway to EIT, then take the stairs up")
+    neighboursMap[BuildingE.C2] = listOf(BuildingE.MC to "Go to floor 0 and take the underground tunnel. Follow the exit signs along the hallway to get to MC", BuildingE.ESC to "Go to the second floor and take the connecting bridge to ESC", BuildingE.DC to "Go to the third fllor and find the connecting bridge to DC")
     neighboursMap[BuildingE.STC] = listOf(BuildingE.NH to "", BuildingE.B2 to "")
 
 // Arts Buildings
@@ -108,8 +108,8 @@ fun initBuildings(): Map<String, Buildings> {
     neighboursMap[BuildingE.EXP] = listOf(BuildingE.BMH to "", BuildingE.BMH to "")
 
 // Other
-    neighboursMap[BuildingE.RCH] = listOf(BuildingE.DWE to "", BuildingE.E2 to "")
-    neighboursMap[BuildingE.SLC] = listOf(BuildingE.PAC to "Find the Subway or Jugo Juice, PAC will be there", BuildingE.MC to "")
+    neighboursMap[BuildingE.RCH] = listOf(BuildingE.DWE to "There is a hallway that connects to DWE on the first floor.", BuildingE.E2 to "On the second floor there is a pathway that connects to DWE")
+    neighboursMap[BuildingE.SLC] = listOf(BuildingE.PAC to "Find the Subway shop or Jugo Juice, PAC will be there", BuildingE.MC to "")
     neighboursMap[BuildingE.PAC] = listOf(BuildingE.SLC to "Walk towards the food court to get to SLC")
 
     // Initialize buildings and add neighbors
