@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.myapplication.ui.theme.Inter
 
 @Composable
 fun IntroductionScreen(navController: NavController) {
@@ -35,13 +36,13 @@ fun IntroductionScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Title Text
         Text(
             text = "Navigate Paths Between Buildings".uppercase(),
             fontSize = 48.sp,
-            fontWeight = FontWeight.Bold,
+            fontFamily = Inter,
+            fontWeight = FontWeight.Black,
             color = Color(0xFFFFD166),
-            modifier = Modifier.fillMaxWidth(0.75f).padding(horizontal = 20.dp),
+            modifier = Modifier.fillMaxWidth(0.90f).padding(horizontal = 35.dp),
             lineHeight = 52.sp
         )
 
@@ -51,9 +52,10 @@ fun IntroductionScreen(navController: NavController) {
         Text(
             text = "Discover internal paths between buildings to avoid the cold or rain. Select your starting building and where you want to go. ",
             fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
+            fontFamily = Inter,
+            fontWeight = FontWeight.Normal,
             color = Color.White,
-            modifier = Modifier.padding(horizontal = 20.dp)
+            modifier = Modifier.padding(horizontal = 35.dp)
         )
         FilledTonalButton(
             onClick = { navController.navigate("QuickCheckScreen") },
@@ -62,7 +64,7 @@ fun IntroductionScreen(navController: NavController) {
                 contentColor = Color.Black     // Set the text color to yellow
             ), modifier = Modifier.padding(top = 24.dp).align(Alignment.CenterHorizontally),
         ) {
-            Text( text = "Get Started", fontWeight = FontWeight.Bold, fontSize = 24.sp, modifier = Modifier.padding(6.dp))
+            Text( text = "Get Started", fontWeight = FontWeight.SemiBold, fontSize = 24.sp, modifier = Modifier.padding(6.dp), fontFamily = Inter)
         }
     }
 }

@@ -13,6 +13,11 @@ import com.example.myapplication.R
 val Kumar = FontFamily(
         Font(R.font.kumarone)
 )
+val Inter = FontFamily(
+        Font(R.font.inter_black, FontWeight.Black),
+        Font(R.font.inter_semibold, FontWeight.SemiBold),
+        Font(R.font.inter_regular, FontWeight.Normal)
+)
 val Typography2 = Typography(
         bodyLarge = TextStyle(
                 fontFamily = Kumar,

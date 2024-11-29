@@ -64,7 +64,8 @@ fun DropDownMenu(
                 colors = ExposedDropdownMenuDefaults.textFieldColors(
                     containerColor = Color(
                         0xFFFFD166
-                    ), focusedIndicatorColor = Color(0xFFCE9E00)
+                    ), focusedIndicatorColor = Color(0xFFCE9E00),
+                    textColor = Color.Black
                 ),
                 modifier = Modifier.menuAnchor(),
                 textStyle = LocalTextStyle.current.copy(
